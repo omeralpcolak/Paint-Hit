@@ -6,6 +6,8 @@ public class BallHandler : MonoBehaviour
 {
     public static float rotationSpeed = 75f;
     public static float rotationTime = 3;
+    public static int currentCircleNo;
+
     public static Color oneColor;
     public GameObject ball;
 
@@ -49,6 +51,10 @@ public class BallHandler : MonoBehaviour
 
         ballsCount = LevelsHandler.ballsCount;
 
+        currentCircleNo = circleNo;
+        LevelsHandler.currentColor = oneColor;
+
+        MakeHurdles();
     }
 
 
@@ -97,6 +103,8 @@ public class BallHandler : MonoBehaviour
         }
         this.circleNo++;
 
+        currentCircleNo = circleNo;
+
 
         GameObject gameObject2 = Instantiate(Resources.Load("round" + Random.Range(1,4))) as GameObject;
         gameObject2.transform.position = new Vector3(0, 20, 23);
@@ -104,11 +112,48 @@ public class BallHandler : MonoBehaviour
 
 
         ballsCount = LevelsHandler.ballsCount;
+        
 
         oneColor = ChangingColors[circleNo];
+        spr.color = oneColor;
+        splashMat.color = oneColor;
+
+        LevelsHandler.currentColor = oneColor;
+
+        MakeHurdles();
 
         
     }
+
+
+    void MakeHurdles()
+    {
+        if (circleNo == 1)
+        {
+            FindObjectOfType<LevelsHandler>().MakeHurdles1();
+        }
+
+        if (circleNo == 2)
+        {
+            FindObjectOfType<LevelsHandler>().MakeHurdles2();
+        }
+
+        if (circleNo == 3)
+        {
+            FindObjectOfType<LevelsHandler>().MakeHurdles3();
+        }
+
+        if (circleNo == 4)
+        {
+            FindObjectOfType<LevelsHandler>().MakeHurdles4();
+        }
+
+        if (circleNo == 5)
+        {
+            FindObjectOfType<LevelsHandler>().MakeHurdles5();
+        }
+
+    }   
 
 
 }
