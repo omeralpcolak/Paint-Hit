@@ -5,6 +5,7 @@ using UnityEngine;
 public class BallHandler : MonoBehaviour
 {
     public static float rotationSpeed = 130f;
+    public static float rotationTime = 3;
     public static Color oneColor = Color.green;
     public GameObject ball;
 
@@ -14,7 +15,13 @@ public class BallHandler : MonoBehaviour
     
     void Start()
     {
-        MakeNewCircle();
+        GameObject gameObject2 = Instantiate(Resources.Load("round" + Random.Range(1, 4))) as GameObject;
+        gameObject2.transform.position = new Vector3(0, 20, 23);
+        gameObject2.name = "Circle" + circleNo;
+
+
+        ballsCount = LevelsHandler.ballsCount;
+        
     }
 
     
@@ -51,7 +58,7 @@ public class BallHandler : MonoBehaviour
             gameObject.transform.GetChild(i).gameObject.SetActive(false);
         }
 
-        gameObject.transform.GetChild(24).gameObject.GetComponent<MeshRenderer>().material.color = oneColor;
+        gameObject.transform.GetChild(24).gameObject.GetComponent<MeshRenderer>().material.color = BallHandler.oneColor;
 
         if (gameObject.GetComponent<iTween>())
         {
@@ -75,6 +82,9 @@ public class BallHandler : MonoBehaviour
         GameObject gameObject2 = Instantiate(Resources.Load("round" + Random.Range(1,4))) as GameObject;
         gameObject2.transform.position = new Vector3(0, 20, 23);
         gameObject2.name = "Circle" + circleNo;
+
+
+        ballsCount = LevelsHandler.ballsCount;
     }
 
 
