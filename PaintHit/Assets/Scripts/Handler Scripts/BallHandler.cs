@@ -4,23 +4,23 @@ using UnityEngine;
 
 public class BallHandler : MonoBehaviour
 {
-    public static float rotationSpeed = 130f;
+    public static float rotationSpeed = 75f;
     public static float rotationTime = 3;
-    public static Color oneColor = Color.green;
+    public static Color oneColor;
     public GameObject ball;
 
     private float speed = 100;
     private int ballsCount;
     private int circleNo;
+
+    private Color[] ChangingColors;
+
+    public SpriteRenderer spr;
+    public Material splashMat;
     
     void Start()
     {
-        GameObject gameObject2 = Instantiate(Resources.Load("round" + Random.Range(1, 4))) as GameObject;
-        gameObject2.transform.position = new Vector3(0, 20, 23);
-        gameObject2.name = "Circle" + circleNo;
-
-
-        ballsCount = LevelsHandler.ballsCount;
+       ResetGame();
         
     }
 
@@ -32,6 +32,25 @@ public class BallHandler : MonoBehaviour
             Hitball();
         }
     }
+
+
+    void ResetGame()
+    {
+
+        ChangingColors = ColorScript.colorArray;
+        oneColor = ChangingColors[0];
+        spr.color = oneColor;
+        splashMat.color = oneColor;
+
+        GameObject gameObject2 = Instantiate(Resources.Load("round" + Random.Range(1, 4))) as GameObject;
+        gameObject2.transform.position = new Vector3(0, 20, 23);
+        gameObject2.name = "Circle" + circleNo;
+
+
+        ballsCount = LevelsHandler.ballsCount;
+
+    }
+
 
     public void Hitball()
     {   
@@ -76,7 +95,7 @@ public class BallHandler : MonoBehaviour
                 0.5
             }));
         }
-        circleNo++;
+        this.circleNo++;
 
 
         GameObject gameObject2 = Instantiate(Resources.Load("round" + Random.Range(1,4))) as GameObject;
@@ -85,6 +104,10 @@ public class BallHandler : MonoBehaviour
 
 
         ballsCount = LevelsHandler.ballsCount;
+
+        oneColor = ChangingColors[circleNo];
+
+        
     }
 
 

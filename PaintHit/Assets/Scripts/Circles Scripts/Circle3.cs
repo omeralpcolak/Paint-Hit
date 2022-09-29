@@ -23,6 +23,6 @@ public class Circle3 : MonoBehaviour
     
     void Update()
     {
-        transform.Rotate(Vector3.down * Time.deltaTime * (BallHandler.rotationSpeed * 20));
+        transform.Rotate(Vector3.down * Time.deltaTime * (BallHandler.rotationSpeed * 2));
     }
 }
