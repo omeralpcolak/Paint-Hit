@@ -27,13 +27,7 @@ public class BallHandler : MonoBehaviour
     }
 
     
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
-        {
-            Hitball();
-        }
-    }
+   
 
 
     void ResetGame()

@@ -19,7 +19,7 @@ public class ColorScript : MonoBehaviour
     {
         int randomC = Random.Range(0, 2);
 
-        PlayerPrefs.SetInt("ColorSelect", randomC);
+        PlayerPrefs.SetInt("ColorSelect",randomC);
         PlayerPrefs.GetInt("ColorSelect");
 
 
